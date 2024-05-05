@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Severity Analyzer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #007bff;
+            margin-bottom: 20px;
+            font-size: 36px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        label {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #333;
+        }
+        input[type="file"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 300px;
+            font-size: 16px;
+            background-color: #f2f2f2;
+            color: #333;
+            transition: background-color 0.3s ease;
+        }
+        input[type="file"]:hover {
+            background-color: #e0e0e0;
+        }
+        input[type="file"]::-webkit-file-upload-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        input[type="file"]::-webkit-file-upload-button:hover {
+            background-color: #0056b3;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        #loading {
+            display: none;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #prediction-heading {
+            display: none;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 24px;
+            color: #007bff;
+        }
+        #accuracy, #classification-report {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            font-size: 18px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Traffic Severity Analyzer</h1>
+        <form id="upload-form" enctype="multipart/form-data" onsubmit="event.preventDefault(); uploadFile();">
+            <label for="file">Choose a CSV file:</label>
+            <input type="file" name="file" id="file">
+            <button type="submit">Predict</button>
+        </form>
+        <h3 id="prediction-heading">Predicted Severity</h3>
+        <div id="loading">Loading...</div>
+        <div id="prediction-table"></div>
+    </div>
+    
+    <script>
+        function uploadFile() {
+            var formData = new FormData();
+            var fileInput = document.getElementById('file');
+            var file = fileInput.files[0];
+            formData.append('file', file);
+    
+            document.getElementById('loading').style.display = 'block';
+    
+            fetch('/predict', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('loading').style.display = 'none';
+                if (data.error) {
+                    document.getElementById('prediction-table').innerHTML = `<p>Error: ${data.error}</p>`;
+                } else {
+                    var predictions = data.predictions;
+                    var tableContent = '<table><thead><tr><th>Prediction</th><th>Severity</th><th>Explanation</th></tr></thead><tbody>';
+                    predictions.forEach(prediction => {
+                        var severity = getSeverity(prediction);
+                        var explanation = getExplanation(severity);
+                        tableContent += `<tr><td>${prediction.toFixed(2)}</td><td>${severity}</td><td>${explanation}</td></tr>`;
+                    });
+                    tableContent += '</tbody></table>';
+                    document.getElementById('prediction-table').innerHTML = tableContent;
+                    document.getElementById('prediction-heading').style.display = 'block';
+    
+                    // Display accuracy
+                    //document.getElementById('accuracy').innerHTML = `Accuracy: ${data.accuracy.toFixed(2)}`;
+    
+                    // Display classification report
+                    //document.getElementById('classification-report').innerHTML = `<pre>${data.report}</pre>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('loading').style.display = 'none';
+                document.getElementById('prediction-table').innerHTML = '<p>Error occurred while making predictions.</p>';
+            });
+        }
+    
+        function getSeverity(prediction) {
+            if (prediction <= 1) {
+                return 'Minor / Low Severity';
+            } else if (prediction <= 2) {
+                return 'Moderate Severity';
+            } else if (prediction <= 3) {
+                return 'Major Severity';
+            } else {
+                return 'Critical Severity';
+            }
+        }
+    
+        function getExplanation(severity) {
+            switch (severity) {
+                case 'Minor / Low Severity':
+                    return 'These accidents have minimal impact on traffic flow, typically involving minor vehicle damage and no injuries.';
+                case 'Moderate Severity':
+                    return 'These accidents have a noticeable impact on traffic flow, often causing some delays and minor injuries.';
+                case 'Major Severity':
+                    return 'These accidents have a significant impact on traffic flow, resulting in long delays, serious injuries, and potential lane closures.';
+                case 'Critical Severity':
+                    return 'These accidents have a severe impact on traffic flow, leading to major road closures, extensive detours, and significant injuries or fatalities.';
+                default:
+                    return '';
+            }
+        }
+    </script>
+</body>
+</html>

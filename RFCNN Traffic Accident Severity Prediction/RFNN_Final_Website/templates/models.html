@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Information</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .model-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .model {
+            width: 32%;
+            height: 150px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            cursor: pointer;
+            background-color: #fff;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .model:hover {
+            background-color: #0060b9;
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .model-content {
+            padding: 10px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: #333;
+        }
+        .model h3 {
+            margin-top: 0;
+            transition: color 0.3s;
+        }
+        .model:hover h3 {
+            color: #fff;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+        .modal-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .modal-description {
+            max-width: 90%; /* Increase the maximum width */
+            max-height: 90%; /* Increase the maximum height */
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: #333;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #999;
+        }
+        .large-modal {
+            width: 70%; /* Increase the width */
+            height: 70%; /* Increase the height */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Model Information RFCNN vs Other Models</h1>
+        <div class="model-container">
+            <div class="model" onclick="showModal('Random Forest', './random_forest.html')">
+                <div class="model-content">
+                    <h3>Random Forest</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('XG Boost', './xgboost.html')">
+                <div class="model-content">
+                    <h3>XG Boost</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('Convolutional Neural Network', './cnn.html')">
+                <div class="model-content">
+                    <h3>Convolutional Neural Network</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('Voting Classifier', './voting.html')">
+                <div class="model-content">
+                    <h3>Voting Classifier</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('Logistic Regression', './logistic.html')">
+                <div class="model-content">
+                    <h3>Logistic Regression</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('RFCNN', './rfcnn.html')">
+                <div class="model-content">
+                    <h3>RFCNN</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('K-Nearest Neighbour', './knn.html')">
+                <div class="model-content">
+                    <h3>K-Nearest Neighbour</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('ADABoost', './adaboost.html')">
+                <div class="model-content">
+                    <h3>ADABoost</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('Decision Trees', './decision.html')">
+                <div class="model-content">
+                    <h3>Decision Trees</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('BBC (Bagging with Base Classifier)', './bbc.html')">
+                <div class="model-content">
+                    <h3>BBC (Bagging with Base Classifier)</h3>
+                </div>
+            </div>
+            <div class="model" onclick="showModal('Naive Bayes', './naives.html')">
+                <div class="model-content">
+                    <h3>Naive Bayes</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-description" id="modalDescription"></div>
+        </div>
+    </div>
+
+    <script>
+        function showModal(modelName, fileLocation) {
+            var modal = document.getElementById("myModal");
+            var modalDescription = document.getElementById("modalDescription");
+            modal.style.display = "block";
+            modalDescription.innerHTML = "<object type='text/html' data='" + fileLocation + "' style='width:100%; height:100%;'></object>";
+            modalDescription.classList.add('large-modal'); // Add 'large-modal' class to increase size
+        }
+
+        function closeModal() {
+            var modal = document.getElementById("myModal");
+            var modalDescription = document.getElementById("modalDescription");
+            modalDescription.classList.remove('large-modal'); // Remove 'large-modal' class
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            var modal = document.getElementById("myModal");
+            if (event.target == modal) {
+                closeModal(); // Close modal when clicking outside
+            }
+        }
+    </script>
+
+</body>
+</html>

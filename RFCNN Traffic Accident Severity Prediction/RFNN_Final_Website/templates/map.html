@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map Visualization</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color:#36454f;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        .heading {
+            text-align: center;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        .explanation {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 2px solid #ccc;
+            /* Remove transform: rotate(-1deg); */
+        }
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-top: 50%; /* 16:9 Aspect Ratio */
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="heading">The Visualization Of Traffic Severity</h1>
+        <p class="explanation">
+            This map visualizes traffic severity levels across geographical locations. Each circle marker represents an incident, with its color indicating the severity level: green for low severity, yellow for moderate, orange for high, and red for severe. By examining the distribution of markers, viewers can identify regions with varying degrees of traffic congestion or accidents, aiding in route planning and decision-making for navigation. The interactive nature of the map allows users to explore specific incidents by hovering over markers, providing additional details such as exact location and severity level.
+        </p>
+        <div class="iframe-container">
+            <iframe
+            src="traffic_map.html"
+            title="map"
+            frameborder="0"
+            ></iframe>
+        </div>
+    </div>
+
+</body>
+</html>

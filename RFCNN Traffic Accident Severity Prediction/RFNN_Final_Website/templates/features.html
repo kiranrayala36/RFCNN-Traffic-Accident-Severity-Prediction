@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feature Explanation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0060b9;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #0060b9;
+      color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .highlight {
+      background-color: #ffdd57;
+    }
+    .highlight_1 {
+      background-color: #ffdd57;
+    }
+    .explanation {
+      margin-top: 20px;
+      font-style: italic;
+      color: #888;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Feature Explanation</h1>
+    <table>
+      <tr>
+        <th>Feature</th>
+        <th>Explanation</th>
+      </tr>
+      <tr>
+        <td>ID</td>
+        <td>The unique identifier for each accident record.</td>
+      </tr>
+      <tr class="highlight">
+        <td>Source</td>
+        <td>The source of the accident report.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td>Severity</td>
+        <td>The severity of the accident.</td>
+      </tr>
+      <tr class="highlight">
+        <td>Accident_Duration</td>
+        <td>The duration of the accident in minutes.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td>Weather_year</td>
+        <td>The year in which the weather data was recorded.</td>
+      </tr>
+      <tr class="highlight">
+        <td>Comfort_Index</td>
+        <td>A measure of comfort based on weather conditions.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td>End_seconds</td>
+        <td>The time in seconds when the accident ended.</td>
+      </tr>
+      <tr class="highlight">
+        <td>Weather_Bin</td>
+        <td>A categorical representation of weather conditions.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td>cluster_Airport_Code</td>
+        <td>The cluster associated with the airport code.</td>
+      </tr>
+      <tr class="highlight">
+        <td>cluster_County</td>
+        <td>The cluster associated with the county.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td>cluster_LatLng</td>
+        <td>The cluster associated with the latitude and longitude.</td>
+      </tr>
+      <tr class="highlight">
+        <td>cluster_Street</td>
+        <td>The cluster associated with the street.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td>cluster_City</td>
+        <td>The cluster associated with the city.</td>
+      </tr>
+      <tr class="highlight">
+        <td>cluster_Zipcode</td>
+        <td>The cluster associated with the zipcode.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td>Pressure_Category</td>
+        <td>The category of atmospheric pressure.</td>
+      </tr>
+      <tr class="highlight">
+        <td>Is_Rush_Hour</td>
+        <td>Indicator if the accident occurred during rush hour.</td>
+      </tr>
+      <tr>
+        <td>Start_Time</td>
+        <td>The date and time when the accident occurred.</td>
+      </tr>
+      <tr>
+        <td>End_Time</td>
+        <td>The date and time when the accident ended.</td>
+      </tr>
+      <tr class="highlight">
+        <td>Start_Lat</td>
+        <td>The latitude coordinate of the accident location.</td>
+      </tr>
+      <tr  class="highlight_1">
+        <td>Start_Lng</td>
+        <td>The longitude coordinate of the accident location.</td>
+      </tr>
+      <tr class="highlight">
+        <td >Distance(mi)</td>
+        <td>The distance covered by the accident in miles.</td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td>A description of the accident.</td>
+      </tr>
+      <tr class="highlight_1">
+        <td >Street</td>
+        <td>The street where the accident occurred.</td>
+      </tr>
+      <tr  class="highlight">
+        <td>City</td>
+        <td>The city where the accident occurred.</td>
+      </tr>
+      <tr  class="highlight_1">
+        <td>County</td>
+        <td>The county where the accident occurred.</td>
+      </tr>
+      <tr>
+        <td>State</td>
+        <td>The state where the accident occurred.</td>
+      </tr>
+      <tr>
+        <td>Zipcode</td>
+        <td>The ZIP code where the accident occurred.</td>
+      </tr>
+      <tr>
+        <td>Country</td>
+        <td>The country where the accident occurred.</td>
+      </tr>
+      <tr>
+        <td>Timezone</td>
+        <td>The timezone of the accident location.</td>
+      </tr>
+      <tr>
+        <td>Airport_Code</td>
+        <td>The airport code near the accident location.</td>
+      </tr>
+      <tr>
+        <td>Weather_Timestamp</td>
+        <td>The timestamp of the weather data recorded.</td>
+      </tr>
+      <tr>
+        <td>Temperature(F)</td>
+        <td>The temperature in Fahrenheit at the time of the accident.</td>
+      </tr>
+      <tr>
+        <td>Wind_Chill(F)</td>
+        <td>The wind chill temperature in Fahrenheit.</td>
+      </tr>
+      <tr>
+        <td>Humidity(%)</td>
+        <td>The humidity percentage at the time of the accident.</td>
+      </tr>
+      <tr>
+        <td>Pressure(in)</td>
+        <td>The atmospheric pressure at the time of the accident.</td>
+      </tr>
+      <tr>
+        <td>Visibility(mi)</td>
+        <td>The visibility in miles at the time of the accident.</td>
+      </tr>
+      <tr class="highlight">
+        <td>Wind_Direction</td>
+        <td>The direction from which the wind is blowing.</td>
+      </tr>
+      <tr>
+        <td>Wind_Speed(mph)</td>
+        <td>The wind speed in miles per hour at the time of the accident.</td>
+      </tr>
+      <tr>
+        <td>Precipitation(in)</td>
+        <td>The amount of precipitation in inches.</td>
+      </tr>
+      <tr>
+        <td>Weather_Condition</td>
+        <td>The weather condition at the time of the accident.</td>
+      </tr>
+      <tr>
+        <td>Amenity</td>
+        <td>Indicator if the accident occurred near an amenity.</td>
+      </tr>
+      <tr>
+        <td>Bump</td>
+        <td>Indicator if the accident occurred near a speed bump.</td>
+      </tr>
+      <tr>
+        <td>Crossing</td>
+        <td>Indicator if the accident occurred near a crossing.</td>
+      </tr>
+      <tr>
+        <td>Give_Way</td>
+        <td>Indicator if the accident occurred near a give way sign.</td>
+      </tr>
+      <tr>
+        <td>Junction</td>
+        <td>Indicator if the accident occurred near a junction.</td>
+      </tr>
+      <tr>
+        <td>No_Exit</td>
+        <td>Indicator if the accident occurred near a no exit point.</td>
+      </tr>
+      <tr>
+        <td>Railway</td>
+        <td>Indicator if the accident occurred near a railway.</td>
+      </tr>
+      <tr>
+        <td>Roundabout</td>
+        <td>Indicator if the accident occurred near a roundabout.</td>
+      </tr>
+      <tr>
+        <td>Station</td>
+        <td>Indicator if the accident occurred near a station.</td>
+      </tr>
+      <tr>
+        <td>Stop</td>
+        <td>Indicator if the accident occurred near a stop sign.</td>
+      </tr>
+      <tr>
+        <td>Traffic_Calming</td>
+        <td>Indicator if the accident occurred near a traffic calming device.</td>
+      </tr>
+      <tr>
+        <td>Traffic_Signal</td>
+        <td>Indicator if the accident occurred near a traffic signal.</td>
+      </tr>
+      <tr>
+        <td>Turning_Loop</td>
+        <td>Indicator if the accident occurred near a turning loop.</td>
+      </tr>
+      <tr>
+        <td>Sunrise_Sunset</td>
+        <td>Indicator if the accident occurred during sunrise or sunset.</td>
+      </tr>
+      <tr>
+        <td>Civil_Twilight</td>
+        <td>Indicator if the accident occurred during civil twilight.</td>
+      </tr>
+      <tr>
+        <td>Nautical_Twilight</td>
+        <td>Indicator if the accident occurred during nautical twilight.</td>
+      </tr>
+      <tr>
+        <td>Astronomical_Twilight</td>
+        <td>Indicator if the accident occurred during astronomical twilight.</td>
+      </tr>
+    </table>
+    <div class="explanation">
+      <p>The highlighted rows represent the 20 selected features chosen for further analysis.</p>
+    </div>
+  </div>
+</body>
+</html>
